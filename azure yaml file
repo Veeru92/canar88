@@ -22,4 +22,11 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/target'
     Contents: '*.war'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: Docker@2
+  displayName:  'Create Dockerfile'
+  script: |
+      echo "FROM ubuntu:latest" > $(Build.ArtifactStagingDirectory)/Dockerfile
+    displayName: 'Create file in Artifact Staging Directory'
+  inputs:
+    Dockerfile: '$(Build.ArtifactStagingDirectory)/Dockerfile'    
     
